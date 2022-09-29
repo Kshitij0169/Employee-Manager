@@ -4,6 +4,8 @@
  */
 package UI;
 
+import manager.EmployeeHistory;
+
 /**
  *
  * @author kshitijkumartiwari
@@ -13,8 +15,11 @@ public class CreateJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreateJPanel
      */
-    public CreateJPanel() {
+    EmployeeHistory history;
+    
+    public CreateJPanel(EmployeeHistory history) {
         initComponents();
+        this.history = history;
     }
 
     /**
@@ -38,7 +43,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         lblEmail = new javax.swing.JLabel();
         lblCntctNo1 = new javax.swing.JLabel();
         txtAge = new javax.swing.JTextField();
-        txtName1 = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         txtEID = new javax.swing.JTextField();
         txtGender = new javax.swing.JTextField();
         txtLvl = new javax.swing.JTextField();
@@ -122,6 +127,11 @@ public class CreateJPanel extends javax.swing.JPanel {
         });
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -156,7 +166,7 @@ public class CreateJPanel extends javax.swing.JPanel {
                     .addComponent(txtStrtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTeamInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(247, 247, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -164,7 +174,7 @@ public class CreateJPanel extends javax.swing.JPanel {
                 .addGap(317, 317, 317))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtAge, txtCntctNo, txtEID, txtEmail, txtGender, txtLvl, txtName1, txtPosTitle, txtStrtDate, txtTeamInfo});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtAge, txtCntctNo, txtEID, txtEmail, txtGender, txtLvl, txtName, txtPosTitle, txtStrtDate, txtTeamInfo});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +184,7 @@ public class CreateJPanel extends javax.swing.JPanel {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblName)
-                    .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEID)
@@ -216,7 +226,7 @@ public class CreateJPanel extends javax.swing.JPanel {
                 .addContainerGap(83, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtAge, txtCntctNo, txtEID, txtEmail, txtGender, txtLvl, txtName1, txtPosTitle, txtStrtDate, txtTeamInfo});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtAge, txtCntctNo, txtEID, txtEmail, txtGender, txtLvl, txtName, txtPosTitle, txtStrtDate, txtTeamInfo});
 
     }// </editor-fold>//GEN-END:initComponents
 
@@ -252,6 +262,21 @@ public class CreateJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
 
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        String name = txtName.getText();
+        int eid = Integer.parseInt(txtEID.getText());
+        int age = Integer.parseInt(txtAge.getText());
+        String gender = txtGender.getText();
+        String strtdate = txtStrtDate.getText();
+        String lvl = txtLvl.getText();
+        String teaminf = txtTeamInfo.getText();
+        String postitle = txtPosTitle.getText();
+        int cntctno = Integer.parseInt(txtCntctNo.getText());
+        String email = txtEmail.getText();
+        
+    }//GEN-LAST:event_btnSaveActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
@@ -272,7 +297,7 @@ public class CreateJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtGender;
     private javax.swing.JTextField txtLvl;
-    private javax.swing.JTextField txtName1;
+    private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPosTitle;
     private javax.swing.JTextField txtStrtDate;
     private javax.swing.JTextField txtTeamInfo;

@@ -49,7 +49,7 @@
                   <Component id="txtStrtDate" linkSize="1" min="-2" max="-2" attributes="0"/>
                   <Component id="txtTeamInfo" linkSize="1" min="-2" max="-2" attributes="0"/>
                   <Component id="txtEmail" linkSize="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtName1" linkSize="1" min="-2" pref="201" max="-2" attributes="0"/>
+                  <Component id="txtName" linkSize="1" min="-2" pref="201" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="256" pref="247" max="32767" attributes="0"/>
           </Group>
@@ -68,7 +68,7 @@
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblName" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtName1" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtName" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -184,7 +184,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtAge">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtName1">
+    <Component class="javax.swing.JTextField" name="txtName">
     </Component>
     <Component class="javax.swing.JTextField" name="txtEID">
       <Events>
@@ -230,6 +230,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Save"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
