@@ -4,7 +4,9 @@
  */
 package UI;
 
+import javax.swing.JOptionPane;
 import manager.EmployeeHistory;
+import manager.Employees;
 
 /**
  *
@@ -272,8 +274,35 @@ public class CreateJPanel extends javax.swing.JPanel {
         String lvl = txtLvl.getText();
         String teaminf = txtTeamInfo.getText();
         String postitle = txtPosTitle.getText();
-        int cntctno = Integer.parseInt(txtCntctNo.getText());
+        String cntctno = txtCntctNo.getText();
         String email = txtEmail.getText();
+        
+        
+        Employees es = history.addNewEmployees();
+        es.setName(name);
+        es.setEid(eid);
+        es.setAge(age);
+        es.setGender(gender);
+        es.setStrtdate(strtdate);
+        es.setLvl(lvl);
+        es.setTeaminf(teaminf);
+        es.setPostitle(postitle);
+        es.setCntctno(cntctno); 
+        es.setEmail(email);
+        
+        JOptionPane.showMessageDialog(this,"New Employee is added.");
+        txtName.setText("");
+        txtAge.setText("");
+        txtEID.setText("");
+        txtAge.setText("");
+        txtGender.setText("");
+        txtStrtDate.setText("");
+        txtLvl.setText("");
+        txtTeamInfo.setText("");
+        txtPosTitle.setText("");
+        txtCntctNo.setText("");
+        txtEmail.setText("");
+        
         
     }//GEN-LAST:event_btnSaveActionPerformed
 

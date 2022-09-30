@@ -18,7 +18,7 @@ public class Employees {
     private String lvl;
     private String teaminf;
     private String postitle;
-    private int cntctno;
+    private String cntctno ;
     private String email;
 
     public String getName() {
@@ -85,11 +85,11 @@ public class Employees {
         this.postitle = postitle;
     }
 
-    public int getCntctno() {
+    public String getCntctno() {
         return cntctno;
     }
 
-    public void setCntctno(int cntctno) {
+    public void setCntctno(String cntctno ) {
         this.cntctno = cntctno;
     }
 
