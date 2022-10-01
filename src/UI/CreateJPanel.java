@@ -12,7 +12,7 @@ import manager.Employees;
  *
  * @author kshitijkumartiwari
  */
-public class CreateJPanel extends javax.swing.JPanel {
+public class CreateJPanel extends javax.swing.JPanel  {
 
     /**
      * Creates new form CreateJPanel
@@ -281,7 +281,10 @@ public class CreateJPanel extends javax.swing.JPanel {
         String cntctno = txtCntctNo.getText();
         String email = txtEmail.getText();
         
-        
+        if( !name.isEmpty() && !gender.isEmpty() && 
+                !strtdate.isEmpty() && !lvl.isEmpty() 
+                && !teaminf.isEmpty() && !postitle.isEmpty()
+                && !cntctno.isEmpty() && !email.isEmpty() ) {
         Employees es = history.addNewEmployees();
         es.setName(name);
         es.setEid(eid);
@@ -295,6 +298,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         es.setEmail(email);
         
         JOptionPane.showMessageDialog(this,"New Employee is added.");
+        
         txtName.setText("");
         txtAge.setText("");
         txtEID.setText("");
@@ -306,6 +310,23 @@ public class CreateJPanel extends javax.swing.JPanel {
         txtPosTitle.setText("");
         txtCntctNo.setText("");
         txtEmail.setText("");
+        }else{
+            
+        txtName.setText("");
+        txtAge.setText("");
+        txtEID.setText("");
+        txtAge.setText("");
+        txtGender.setText("");
+        txtStrtDate.setText("");
+        txtLvl.setText("");
+        txtTeamInfo.setText("");
+        txtPosTitle.setText("");
+        txtCntctNo.setText("");
+        txtEmail.setText("");
+        
+        JOptionPane.showMessageDialog(this,"No field can be empty!");
+        
+        }
         
         
     }//GEN-LAST:event_btnSaveActionPerformed

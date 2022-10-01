@@ -62,6 +62,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         txtName = new javax.swing.JTextField();
         lblEID = new javax.swing.JLabel();
         txtEID = new javax.swing.JTextField();
+        btnUpdate = new javax.swing.JButton();
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 30)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -170,6 +171,13 @@ public class ViewJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -182,48 +190,48 @@ public class ViewJPanel extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblStrtDate)
+                            .addComponent(lblGender)
+                            .addComponent(lblAge)
+                            .addComponent(lblEID)
+                            .addComponent(lblName))
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtGender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                            .addComponent(txtAge, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEID, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtStrtDate))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblStrtDate)
-                                    .addComponent(lblGender)
-                                    .addComponent(lblAge)
-                                    .addComponent(lblEID)
-                                    .addComponent(lblName))
-                                .addGap(39, 39, 39)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtGender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                                    .addComponent(txtAge, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEID, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtStrtDate))
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(13, 13, 13)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblPosTitle)
-                                            .addComponent(lblTeamInf)
-                                            .addComponent(lblLvl)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(lblEmail)
-                                        .addComponent(lblCntctNo1)))
-                                .addGap(39, 39, 39)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtLvl, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                                    .addComponent(txtTeamInfo)
-                                    .addComponent(txtPosTitle)
-                                    .addComponent(txtCntctNo)
-                                    .addComponent(txtEmail)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnView)
-                                .addGap(28, 28, 28)
-                                .addComponent(btnDelete)
-                                .addGap(17, 17, 17)))
+                                    .addComponent(lblPosTitle)
+                                    .addComponent(lblTeamInf)
+                                    .addComponent(lblLvl)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblEmail)
+                                .addComponent(lblCntctNo1)))
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtLvl, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                            .addComponent(txtTeamInfo)
+                            .addComponent(txtPosTitle)
+                            .addComponent(txtCntctNo)
+                            .addComponent(txtEmail))
                         .addGap(63, 63, 63))
-                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)))
+                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnView)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDelete)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnUpdate)
+                        .addGap(28, 28, 28))))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDelete, btnView});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDelete, btnUpdate, btnView});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,7 +243,8 @@ public class ViewJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnView)
-                    .addComponent(btnDelete))
+                    .addComponent(btnDelete)
+                    .addComponent(btnUpdate))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -281,7 +290,7 @@ public class ViewJPanel extends javax.swing.JPanel {
                 .addContainerGap(116, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnView});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnUpdate, btnView});
 
     }// </editor-fold>//GEN-END:initComponents
 
@@ -369,10 +378,51 @@ public class ViewJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnViewActionPerformed
 
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) EmployeeTable.getModel();
+        if(EmployeeTable.getSelectedRowCount() == 1){
+        
+        String name = txtName.getText();
+        int eid = Integer.parseInt(txtEID.getText());
+        int age = Integer.parseInt(txtAge.getText());
+        String gender = txtGender.getText();
+        String strtdate = txtStrtDate.getText();
+        String lvl = txtLvl.getText();
+        String teaminf = txtTeamInfo.getText();
+        String postitle = txtPosTitle.getText();
+        String cntctno = txtCntctNo.getText();
+        String email = txtEmail.getText();
+        
+        
+        model.setValueAt(name, EmployeeTable.getSelectedRow(), 0);
+        model.setValueAt(eid, EmployeeTable.getSelectedRow(), 1);
+        model.setValueAt(age, EmployeeTable.getSelectedRow(), 2);
+        model.setValueAt(gender, EmployeeTable.getSelectedRow(), 3);
+        model.setValueAt(strtdate, EmployeeTable.getSelectedRow(), 4);
+        model.setValueAt(lvl, EmployeeTable.getSelectedRow(), 5);
+        model.setValueAt(teaminf, EmployeeTable.getSelectedRow(), 6);
+        model.setValueAt(postitle, EmployeeTable.getSelectedRow(), 7);
+        model.setValueAt(cntctno, EmployeeTable.getSelectedRow(), 8);
+        model.setValueAt(email, EmployeeTable.getSelectedRow(), 9);
+        
+        JOptionPane.showMessageDialog(this, "Selected row was updated successfully.");
+        
+        } else{
+           if(EmployeeTable.getSelectedRowCount() == 0){
+               JOptionPane.showMessageDialog(this, "Table ss empty.");
+           }else{
+               JOptionPane.showMessageDialog(this, "Please select a row to update.");
+           }
+        }
+        
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable EmployeeTable;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnView;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAge;
@@ -431,4 +481,8 @@ public class ViewJPanel extends javax.swing.JPanel {
         }
 
     }   
+
+    
+    
+    
 }
