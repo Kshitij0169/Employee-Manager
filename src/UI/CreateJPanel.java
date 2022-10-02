@@ -64,6 +64,7 @@ public class CreateJPanel extends javax.swing.JPanel  {
         lblImg = new javax.swing.JLabel();
         btnImg = new javax.swing.JButton();
         cmbBoxGender = new javax.swing.JComboBox<>();
+        lblEmpName = new javax.swing.JLabel();
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 30)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -162,6 +163,9 @@ public class CreateJPanel extends javax.swing.JPanel  {
             }
         });
 
+        lblEmpName.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        lblEmpName.setText("Employee Image");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -210,11 +214,13 @@ public class CreateJPanel extends javax.swing.JPanel  {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(84, 84, 84))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnImg)
-                        .addGap(58, 58, 58))))
+                        .addGap(58, 58, 58))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblEmpName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblImg, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
+                        .addGap(84, 84, 84))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSave)
@@ -228,7 +234,9 @@ public class CreateJPanel extends javax.swing.JPanel  {
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(lblTitle)
-                .addGap(53, 53, 53)
+                .addGap(30, 30, 30)
+                .addComponent(lblEmpName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -319,8 +327,8 @@ public class CreateJPanel extends javax.swing.JPanel  {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         String name = txtName.getText();
-        int eid = Integer.parseInt(txtEID.getText());
-        int age = Integer.parseInt(txtAge.getText());
+        String eid = txtEID.getText();
+        String age = txtAge.getText();
         String gender = txtGender.getText();
         String strtdate = txtStrtDate.getText();
         String lvl = txtLvl.getText();
@@ -330,10 +338,11 @@ public class CreateJPanel extends javax.swing.JPanel  {
         String email = txtEmail.getText();
         Icon empimg = lblImg.getIcon();
         
-        if( name.isEmpty() && gender.isEmpty() && 
-                strtdate.isEmpty() && lvl.isEmpty() 
-                && teaminf.isEmpty() && postitle.isEmpty()
-                && cntctno.isEmpty() && email.isEmpty())
+        
+        if( name.isEmpty() || gender.isEmpty() || 
+                strtdate.isEmpty() || lvl.isEmpty() 
+                || teaminf.isEmpty() || postitle.isEmpty()
+                || cntctno.isEmpty() || email.isEmpty() || age.isEmpty() || eid.isEmpty() )
         {
         txtName.setText("");
         txtAge.setText("");
@@ -350,31 +359,43 @@ public class CreateJPanel extends javax.swing.JPanel  {
         
         JOptionPane.showMessageDialog(this,"No field can be empty!");
         
-        
         }
+        
+        
+        
         
         else if(name.length()<2){
             
-          JOptionPane.showMessageDialog(this, "Name cannot be a single character. Please enter name again.", "Error", JOptionPane.ERROR_MESSAGE);  
+          JOptionPane.showMessageDialog(this, "Name cannot be a single character. Please enter again.", "Error", JOptionPane.ERROR_MESSAGE);  
           txtName.setText("");
           
         }
         
-        else if (age<18){
+        else if (Integer.parseInt(age)<18){
             
-           JOptionPane.showMessageDialog(this, "Employee should 18 years old or more. Please enter age again.", "Error", JOptionPane.ERROR_MESSAGE);
+           JOptionPane.showMessageDialog(this, "Employee should 18 years old or more. Please enter again.", "Error", JOptionPane.ERROR_MESSAGE);
             txtAge.setText("");
             
         }
         
         else if (cntctno.length()>10){
             JOptionPane.showMessageDialog(this, "Contact number should be 10 digits. Please enter again.", "Error", JOptionPane.ERROR_MESSAGE);
-            
+             txtCntctNo.setText("");
+        }
+        
+        else if(!cntctno.matches("[0-9]+")){
+            JOptionPane.showMessageDialog(this, "Contact number should have numerics only. Please enter again.", "Error", JOptionPane.ERROR_MESSAGE);
+             txtCntctNo.setText("");
         }
               
         else if (cntctno.length()<10) {
             JOptionPane.showMessageDialog(this, "Contact number should 10 digits. Please enter again.", "Error", JOptionPane.ERROR_MESSAGE);
-            
+            txtCntctNo.setText("");
+        }
+        
+        else if (cntctno.length()>10) {
+            JOptionPane.showMessageDialog(this, "Contact number should 10 digits. Please enter again.", "Error", JOptionPane.ERROR_MESSAGE);
+            txtCntctNo.setText("");
         }
    
         
@@ -462,6 +483,7 @@ public class CreateJPanel extends javax.swing.JPanel  {
     private javax.swing.JLabel lblCntctNo1;
     private javax.swing.JLabel lblEID;
     private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblEmpName;
     private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblImg;
     private javax.swing.JLabel lblLvl;

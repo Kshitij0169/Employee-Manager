@@ -300,12 +300,13 @@ public class ViewJPanel extends javax.swing.JPanel {
                             .addComponent(lblGender)
                             .addComponent(txtGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblStrtDate)
-                            .addComponent(txtStrtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblEmail)
-                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblStrtDate)
+                                .addComponent(txtStrtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblLvl)
@@ -420,7 +421,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         
         
         txtName.setText(selectedEmployee.getName());
-        txtEID.setText(String.valueOf(selectedEmployee.getEid()));
+        txtEID.setText(selectedEmployee.getEid());
         txtAge.setText(String.valueOf(selectedEmployee.getAge()));
         txtGender.setText(selectedEmployee.getGender());
         txtStrtDate.setText(selectedEmployee.getStrtdate());
@@ -441,8 +442,8 @@ public class ViewJPanel extends javax.swing.JPanel {
         if(EmployeeTable.getSelectedRowCount() == 1){
         
         String name = txtName.getText();
-        int eid = Integer.parseInt(txtEID.getText());
-        int age = Integer.parseInt(txtAge.getText());
+        String eid = txtEID.getText();
+        String age = txtAge.getText();
         String gender = txtGender.getText();
         String strtdate = txtStrtDate.getText();
         String lvl = txtLvl.getText();
@@ -452,7 +453,78 @@ public class ViewJPanel extends javax.swing.JPanel {
         String email = txtEmail.getText();
         Icon empimg = lblImg.getIcon();
         
+        if( name.isEmpty() || gender.isEmpty() || 
+                strtdate.isEmpty() || lvl.isEmpty() 
+                || teaminf.isEmpty() || postitle.isEmpty()
+                || cntctno.isEmpty() || email.isEmpty() || age.isEmpty() || eid.isEmpty() )
+        {
+        txtName.setText("");
+        txtAge.setText("");
+        txtEID.setText("");
+        txtAge.setText("");
+        txtGender.setText("");
+        txtStrtDate.setText("");
+        txtLvl.setText("");
+        txtTeamInfo.setText("");
+        txtPosTitle.setText("");
+        txtCntctNo.setText("");
+        txtEmail.setText("");
+        lblImg.setIcon(null);
         
+        JOptionPane.showMessageDialog(this,"No field can be empty!");
+        
+        }
+        
+        
+        
+        
+        else if(name.length()<2){
+            
+          JOptionPane.showMessageDialog(this, "Name cannot be a single character. Please enter again.", "Error", JOptionPane.ERROR_MESSAGE);  
+          txtName.setText("");
+          
+        }
+        
+        else if (Integer.parseInt(age)<18){
+            
+           JOptionPane.showMessageDialog(this, "Employee should 18 years old or more. Please enter again.", "Error", JOptionPane.ERROR_MESSAGE);
+            txtAge.setText("");
+            
+        }
+        
+        else if(!gender.equalsIgnoreCase("Male") || !gender.equalsIgnoreCase("Female") || !gender.equalsIgnoreCase("Other") ){
+            JOptionPane.showMessageDialog(this, "Invalid input. Please enter gender again.", "Error", JOptionPane.ERROR_MESSAGE);
+            txtGender.setText("");
+        }
+              
+        
+        else if (cntctno.length()>10){
+            JOptionPane.showMessageDialog(this, "Contact number should be 10 digits. Please enter again.", "Error", JOptionPane.ERROR_MESSAGE);
+             txtCntctNo.setText("");
+        }
+        
+        else if(!cntctno.matches("[0-9]+")){
+            JOptionPane.showMessageDialog(this, "Contact number should have numerics only. Please enter again.", "Error", JOptionPane.ERROR_MESSAGE);
+             txtCntctNo.setText("");
+        }
+              
+        else if (cntctno.length()<10) {
+            JOptionPane.showMessageDialog(this, "Contact number should 10 digits. Please enter again.", "Error", JOptionPane.ERROR_MESSAGE);
+            txtCntctNo.setText("");
+        }
+        
+        else if (cntctno.length()>10) {
+            JOptionPane.showMessageDialog(this, "Contact number should 10 digits. Please enter again.", "Error", JOptionPane.ERROR_MESSAGE);
+            txtCntctNo.setText("");
+        }
+   
+        
+        else if ( !email.contains("@") && !email.contains(".")) {
+        
+        JOptionPane.showMessageDialog(this,"Invalid Email Address. Please enter again", "Error", JOptionPane.ERROR_MESSAGE);
+        txtEmail.setText("");
+    }
+        else{
         model.setValueAt(name, EmployeeTable.getSelectedRow(), 0);
         model.setValueAt(eid, EmployeeTable.getSelectedRow(), 1);
         model.setValueAt(age, EmployeeTable.getSelectedRow(), 2);
@@ -465,7 +537,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         model.setValueAt(email, EmployeeTable.getSelectedRow(), 9);
         
         JOptionPane.showMessageDialog(this, "Selected row was updated successfully.");
-        
+        }
         } else{
            if(EmployeeTable.getSelectedRowCount() == 0){
                JOptionPane.showMessageDialog(this, "Table ss empty.");
