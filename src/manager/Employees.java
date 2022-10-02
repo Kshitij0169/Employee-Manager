@@ -4,6 +4,9 @@
  */
 package manager;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author kshitijkumartiwari
@@ -20,6 +23,7 @@ public class Employees {
     private String postitle;
     private String cntctno ;
     private String email;
+    private ImageIcon empimg;
 
     public String getName() {
         return name;
@@ -89,7 +93,7 @@ public class Employees {
         return cntctno;
     }
 
-    public void setCntctno(String cntctno ) {
+    public void setCntctno(String cntctno) {
         this.cntctno = cntctno;
     }
 
@@ -100,6 +104,18 @@ public class Employees {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public ImageIcon getEmpimg() {
+        return empimg;
+    }
+
+    public void setEmpimg(Icon empimg) {
+        this.empimg = (ImageIcon) empimg;
+    }
+    
+
+
+
 
     @Override
     public String toString(){

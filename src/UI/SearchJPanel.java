@@ -155,6 +155,7 @@ DefaultTableModel model = (DefaultTableModel) EmployeeTable.getModel();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchActionPerformed
 

@@ -4,7 +4,13 @@
  */
 package UI;
 
+import java.awt.Image;
+import java.io.File;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import manager.EmployeeHistory;
 import manager.Employees;
@@ -63,6 +69,9 @@ public class ViewJPanel extends javax.swing.JPanel {
         lblEID = new javax.swing.JLabel();
         txtEID = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
+        lblImg = new javax.swing.JLabel();
+        lblProfileImg = new javax.swing.JLabel();
+        btnImgUpdate = new javax.swing.JButton();
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 30)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -178,17 +187,31 @@ public class ViewJPanel extends javax.swing.JPanel {
             }
         });
 
+        lblImg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lblProfileImg.setText("Profile Image");
+        lblProfileImg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnImgUpdate.setText("Update Image");
+        btnImgUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImgUpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblStrtDate)
                             .addComponent(lblGender)
@@ -197,38 +220,51 @@ public class ViewJPanel extends javax.swing.JPanel {
                             .addComponent(lblName))
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtGender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                            .addComponent(txtGender, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtAge, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtEID, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtStrtDate))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtStrtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblPosTitle)
-                                    .addComponent(lblTeamInf)
-                                    .addComponent(lblLvl)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(13, 13, 13)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblPosTitle)
+                                            .addComponent(lblTeamInf)
+                                            .addComponent(lblLvl)))
+                                    .addComponent(lblCntctNo1))
+                                .addGap(39, 39, 39)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtLvl, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                                    .addComponent(txtTeamInfo)
+                                    .addComponent(txtPosTitle)
+                                    .addComponent(txtCntctNo)))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblEmail)
-                                .addComponent(lblCntctNo1)))
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtLvl, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                            .addComponent(txtTeamInfo)
-                            .addComponent(txtPosTitle)
-                            .addComponent(txtCntctNo)
-                            .addComponent(txtEmail))
-                        .addGap(63, 63, 63))
-                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnView)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnUpdate)
-                        .addGap(28, 28, 28))))
+                                .addGap(39, 39, 39)
+                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblProfileImg)
+                                .addGap(79, 79, 79))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(62, 62, 62))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnImgUpdate)
+                                .addContainerGap())))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnView)
+                .addGap(18, 18, 18)
+                .addComponent(btnDelete)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnUpdate)
+                .addContainerGap())
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDelete, btnUpdate, btnView});
@@ -245,28 +281,8 @@ public class ViewJPanel extends javax.swing.JPanel {
                     .addComponent(btnView)
                     .addComponent(btnDelete)
                     .addComponent(btnUpdate))
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblLvl)
-                            .addComponent(txtLvl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTeamInf)
-                            .addComponent(txtTeamInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPosTitle)
-                            .addComponent(txtPosTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCntctNo1)
-                            .addComponent(txtCntctNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblEmail)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblName)
@@ -275,19 +291,44 @@ public class ViewJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblEID)
                             .addComponent(txtEID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblAge)
                             .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblGender)
                             .addComponent(txtGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblStrtDate)
-                            .addComponent(txtStrtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(116, Short.MAX_VALUE))
+                            .addComponent(txtStrtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblEmail)
+                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblLvl)
+                            .addComponent(txtLvl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblProfileImg))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblTeamInf)
+                                    .addComponent(txtTeamInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblPosTitle)
+                                    .addComponent(txtPosTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblCntctNo1)
+                                    .addComponent(txtCntctNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnImgUpdate)))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnUpdate, btnView});
@@ -357,7 +398,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         
         if(selectedRowIndedx<0){
             
-            JOptionPane.showMessageDialog(this, "Please select a row to delete.");
+            JOptionPane.showMessageDialog(this, "Please select a row to view details.");
             return;
         }
         
@@ -374,6 +415,10 @@ public class ViewJPanel extends javax.swing.JPanel {
         txtPosTitle.setText(selectedEmployee.getPostitle());
         txtCntctNo.setText(selectedEmployee.getCntctno());
         txtEmail.setText(selectedEmployee.getEmail());
+        lblImg.setIcon(selectedEmployee.getEmpimg());
+        
+        
+        
         
         
     }//GEN-LAST:event_btnViewActionPerformed
@@ -393,6 +438,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         String postitle = txtPosTitle.getText();
         String cntctno = txtCntctNo.getText();
         String email = txtEmail.getText();
+        Icon empimg = lblImg.getIcon();
         
         
         model.setValueAt(name, EmployeeTable.getSelectedRow(), 0);
@@ -418,10 +464,29 @@ public class ViewJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnUpdateActionPerformed
 
+    private void btnImgUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImgUpdateActionPerformed
+        // TODO add your handling code here:
+        JFileChooser browseImageFile = new JFileChooser();
+        
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES","png","jpg","jpeg");
+        browseImageFile.addChoosableFileFilter(fnef);
+        int showOpenDialog = browseImageFile.showOpenDialog(null);
+        if(showOpenDialog == JFileChooser.APPROVE_OPTION){
+            File selectedImageFile = browseImageFile.getSelectedFile();
+            String selectedImagePath = selectedImageFile.getAbsolutePath();
+            JOptionPane.showMessageDialog(null , selectedImagePath);
+            
+            ImageIcon ii = new ImageIcon(selectedImagePath);
+            Image ei = (ii).getImage().getScaledInstance(ii.getIconWidth(), ii.getIconHeight(), Image.SCALE_SMOOTH);
+            ii = new ImageIcon(ei);
+            lblImg.setIcon(ii);
+    }//GEN-LAST:event_btnImgUpdateActionPerformed
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable EmployeeTable;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnImgUpdate;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnView;
     private javax.swing.JScrollPane jScrollPane1;
@@ -430,9 +495,11 @@ public class ViewJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblEID;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblGender;
+    private javax.swing.JLabel lblImg;
     private javax.swing.JLabel lblLvl;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblPosTitle;
+    private javax.swing.JLabel lblProfileImg;
     private javax.swing.JLabel lblStrtDate;
     private javax.swing.JLabel lblTeamInf;
     private javax.swing.JLabel lblTitle;
