@@ -405,6 +405,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) EmployeeTable.getModel();
         Employees selectedEmployee = (Employees)model.getValueAt(selectedRowIndedx , 0);
         
+        
         txtName.setText(selectedEmployee.getName());
         txtEID.setText(String.valueOf(selectedEmployee.getEid()));
         txtAge.setText(String.valueOf(selectedEmployee.getAge()));
@@ -415,9 +416,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         txtPosTitle.setText(selectedEmployee.getPostitle());
         txtCntctNo.setText(selectedEmployee.getCntctno());
         txtEmail.setText(selectedEmployee.getEmail());
-        lblImg.setIcon(selectedEmployee.getEmpimg());
-        
-        
+        lblImg.setIcon(selectedEmployee.getEmpimg(lblImg.getWidth(), lblImg.getHeight(), Image.SCALE_SMOOTH));
         
         
         
@@ -537,14 +536,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         model.addRow(row);
    
         
-        
-
-
-
-
-
-
-
+       
         }
 
     }   

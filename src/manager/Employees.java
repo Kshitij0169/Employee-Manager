@@ -105,7 +105,7 @@ public class Employees {
         this.email = email;
     }
 
-    public ImageIcon getEmpimg() {
+    public ImageIcon getEmpimg(int width, int height, int SCALE_SMOOTH) {
         return empimg;
     }
 
@@ -120,6 +120,10 @@ public class Employees {
     @Override
     public String toString(){
         return name;
+    }
+
+    public Object getScaledImage(int width, int height, int SCALE_SMOOTH) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
  
