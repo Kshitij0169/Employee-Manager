@@ -354,6 +354,19 @@ public class ViewJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Selected Employee was deleted.");
         populateTable();
         
+        txtName.setText("");
+        txtAge.setText("");
+        txtEID.setText("");
+        txtAge.setText("");
+        txtGender.setText("");
+        txtStrtDate.setText("");
+        txtLvl.setText("");
+        txtTeamInfo.setText("");
+        txtPosTitle.setText("");
+        txtCntctNo.setText("");
+        txtEmail.setText("");
+        lblImg.setIcon(null);
+        
         
         
     }//GEN-LAST:event_btnDeleteActionPerformed
@@ -476,7 +489,7 @@ public class ViewJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null , selectedImagePath);
             
             ImageIcon ii = new ImageIcon(selectedImagePath);
-            Image ei = (ii).getImage().getScaledInstance(ii.getIconWidth(), ii.getIconHeight(), Image.SCALE_SMOOTH);
+            Image ei = (ii).getImage().getScaledInstance(lblImg.getWidth(), lblImg.getHeight() ,Image.SCALE_SMOOTH);
             ii = new ImageIcon(ei);
             lblImg.setIcon(ii);
     }//GEN-LAST:event_btnImgUpdateActionPerformed
