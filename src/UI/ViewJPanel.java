@@ -438,7 +438,19 @@ public class ViewJPanel extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+       int selectedRowIndedx = EmployeeTable.getSelectedRow();
+        
+        if(selectedRowIndedx<0){
+            
+            JOptionPane.showMessageDialog(this, "Please select a row to update details.");
+            return;
+        }
+        
         DefaultTableModel model = (DefaultTableModel) EmployeeTable.getModel();
+        Employees selectedEmployee = (Employees)model.getValueAt(selectedRowIndedx , 0);
+        
+        
+        
         if(EmployeeTable.getSelectedRowCount() == 1){
         
         String name = txtName.getText();
@@ -452,6 +464,17 @@ public class ViewJPanel extends javax.swing.JPanel {
         String cntctno = txtCntctNo.getText();
         String email = txtEmail.getText();
         Icon empimg = lblImg.getIcon();
+        
+        selectedEmployee.setName(name);
+        selectedEmployee.setEid(eid);
+        selectedEmployee.setAge(age);
+        selectedEmployee.setGender(gender);
+        selectedEmployee.setStrtdate(strtdate);
+        selectedEmployee.setLvl(lvl);
+        selectedEmployee.setTeaminf(teaminf);
+        selectedEmployee.setPostitle(postitle);
+        selectedEmployee.setCntctno(cntctno);
+        selectedEmployee.setEmail(email);
         
         if( name.isEmpty() || gender.isEmpty() || 
                 strtdate.isEmpty() || lvl.isEmpty() 
@@ -474,15 +497,17 @@ public class ViewJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this,"No field can be empty!");
         
         }
-        
-        
-        
-        
+       
         else if(name.length()<2){
             
           JOptionPane.showMessageDialog(this, "Name cannot be a single character. Please enter again.", "Error", JOptionPane.ERROR_MESSAGE);  
           txtName.setText("");
           
+        }
+        
+        else if(!age.matches("[0-9]+")){
+            JOptionPane.showMessageDialog(this, "Age should have numerics only. Please enter again.", "Error", JOptionPane.ERROR_MESSAGE);
+             txtAge.setText("");
         }
         
         else if (Integer.parseInt(age)<18){
@@ -491,7 +516,7 @@ public class ViewJPanel extends javax.swing.JPanel {
             txtAge.setText("");
             
         }
-        
+              
         else if(!gender.contentEquals("Male") && !gender.contentEquals("Female") && !gender.contentEquals("Other")){
             JOptionPane.showMessageDialog(this, "Gender can only be 'Male', 'Female' or 'Other'. Please enter gender again.", "Error", JOptionPane.ERROR_MESSAGE);
             txtGender.setText("");
@@ -518,28 +543,35 @@ public class ViewJPanel extends javax.swing.JPanel {
         }
    
         
-        else if ( !email.contains("@") && !email.contains(".")) {
+        else if ( !email.contains("@") || !email.contains(".")) {
         
         JOptionPane.showMessageDialog(this,"Invalid Email Address. Please enter again", "Error", JOptionPane.ERROR_MESSAGE);
         txtEmail.setText("");
     }
         else{
-        model.setValueAt(name, EmployeeTable.getSelectedRow(), 0);
-        model.setValueAt(eid, EmployeeTable.getSelectedRow(), 1);
-        model.setValueAt(age, EmployeeTable.getSelectedRow(), 2);
-        model.setValueAt(gender, EmployeeTable.getSelectedRow(), 3);
-        model.setValueAt(strtdate, EmployeeTable.getSelectedRow(), 4);
-        model.setValueAt(lvl, EmployeeTable.getSelectedRow(), 5);
-        model.setValueAt(teaminf, EmployeeTable.getSelectedRow(), 6);
-        model.setValueAt(postitle, EmployeeTable.getSelectedRow(), 7);
-        model.setValueAt(cntctno, EmployeeTable.getSelectedRow(), 8);
-        model.setValueAt(email, EmployeeTable.getSelectedRow(), 9);
         
+           history.updatedEmployee(selectedEmployee, selectedRowIndedx);
+           populateTable();
+           
+           txtName.setText("");
+                txtAge.setText("");
+                txtEID.setText("");
+                txtAge.setText("");
+                txtGender.setText("");
+                txtStrtDate.setText("");
+                txtLvl.setText("");
+                txtTeamInfo.setText("");
+                txtPosTitle.setText("");
+                txtCntctNo.setText("");
+                txtEmail.setText("");
+                lblImg.setIcon(null);
+            
+     
         JOptionPane.showMessageDialog(this, "Selected row was updated successfully.");
         }
         } else{
            if(EmployeeTable.getSelectedRowCount() == 0){
-               JOptionPane.showMessageDialog(this, "Table ss empty.");
+               JOptionPane.showMessageDialog(this, "Table is empty.");
            }else{
                JOptionPane.showMessageDialog(this, "Please select a row to update.");
            }
@@ -549,6 +581,13 @@ public class ViewJPanel extends javax.swing.JPanel {
 
     private void btnImgUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImgUpdateActionPerformed
         // TODO add your handling code here:
+        int selectedRowIndedx = EmployeeTable.getSelectedRow();
+        if(selectedRowIndedx<0){
+            
+            JOptionPane.showMessageDialog(this, "Please select a row to update image.");
+            return;
+        }
+        else{
         JFileChooser browseImageFile = new JFileChooser();
         
         FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES","png","jpg","jpeg");
@@ -563,6 +602,7 @@ public class ViewJPanel extends javax.swing.JPanel {
             Image ei = (ii).getImage().getScaledInstance(lblImg.getWidth(), lblImg.getHeight() ,Image.SCALE_SMOOTH);
             ii = new ImageIcon(ei);
             lblImg.setIcon(ii);
+        }
     }//GEN-LAST:event_btnImgUpdateActionPerformed
 }
 

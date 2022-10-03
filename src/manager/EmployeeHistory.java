@@ -38,4 +38,8 @@ public class EmployeeHistory {
         history.remove(es);
     }
     
+    public void updatedEmployee(Employees es, int rowIndex){
+        history.set(rowIndex, es);
+    }
+    
 }
