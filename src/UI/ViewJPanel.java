@@ -465,16 +465,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         String email = txtEmail.getText();
         Icon empimg = lblImg.getIcon();
         
-        selectedEmployee.setName(name);
-        selectedEmployee.setEid(eid);
-        selectedEmployee.setAge(age);
-        selectedEmployee.setGender(gender);
-        selectedEmployee.setStrtdate(strtdate);
-        selectedEmployee.setLvl(lvl);
-        selectedEmployee.setTeaminf(teaminf);
-        selectedEmployee.setPostitle(postitle);
-        selectedEmployee.setCntctno(cntctno);
-        selectedEmployee.setEmail(email);
+        
         
         if( name.isEmpty() || gender.isEmpty() || 
                 strtdate.isEmpty() || lvl.isEmpty() 
@@ -549,6 +540,17 @@ public class ViewJPanel extends javax.swing.JPanel {
         txtEmail.setText("");
     }
         else{
+            
+        selectedEmployee.setName(name);
+        selectedEmployee.setEid(eid);
+        selectedEmployee.setAge(age);
+        selectedEmployee.setGender(gender);
+        selectedEmployee.setStrtdate(strtdate);
+        selectedEmployee.setLvl(lvl);
+        selectedEmployee.setTeaminf(teaminf);
+        selectedEmployee.setPostitle(postitle);
+        selectedEmployee.setCntctno(cntctno);
+        selectedEmployee.setEmail(email);
         
            history.updatedEmployee(selectedEmployee, selectedRowIndedx);
            populateTable();
