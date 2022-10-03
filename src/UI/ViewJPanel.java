@@ -492,11 +492,10 @@ public class ViewJPanel extends javax.swing.JPanel {
             
         }
         
-        else if(!gender.equalsIgnoreCase("Male") || !gender.equalsIgnoreCase("Female") || !gender.equalsIgnoreCase("Other") ){
-            JOptionPane.showMessageDialog(this, "Invalid input. Please enter gender again.", "Error", JOptionPane.ERROR_MESSAGE);
+        else if(!gender.contentEquals("Male") && !gender.contentEquals("Female") && !gender.contentEquals("Other")){
+            JOptionPane.showMessageDialog(this, "Gender can only be 'Male', 'Female' or 'Other'. Please enter gender again.", "Error", JOptionPane.ERROR_MESSAGE);
             txtGender.setText("");
         }
-              
         
         else if (cntctno.length()>10){
             JOptionPane.showMessageDialog(this, "Contact number should be 10 digits. Please enter again.", "Error", JOptionPane.ERROR_MESSAGE);
